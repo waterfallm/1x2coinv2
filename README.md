@@ -2,7 +2,7 @@
 ======================================
 
 
-It is recommended [use the shell script](https://github.com/1X2Coin/linux-install) to install a 1X2 Coin Masternode on a Linux server running Ubuntu 14.04, 16.04, 18.04
+It is recommended [use the shell script](https://github.com/1x2-coin/linux-install) to install a 1X2 Coin Masternode on a Linux server running Ubuntu 14.04, 16.04, 18.04
 
 ***
 
@@ -19,7 +19,7 @@ Installation of libraries (using root user):
 Cloning the repository and compiling (use any user with the sudo group):
 
     cd
-    git clone https://github.com/1X2Coin/1X2Coin.git 1x2coin
+    git clone https://github.com/1x2-coin/1x2coin.git 1x2coin
     cd 1x2coin
     ./autogen.sh
     ./configure
@@ -45,7 +45,7 @@ Demon status:
 
 All binaries for different operating systems, you can download in the releases repository:
 
-https://github.com/1X2Coin/1X2Coin/releases
+https://github.com/1x2-coin/1x2coin/releases
 
 P2P port: 9214, RPC port: 9213
 -
