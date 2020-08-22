@@ -8,11 +8,9 @@ architectures:
 packages:
 - "curl"
 #- "build-essential"
-- "g++-aarch64-linux-gnu"
 - "g++-8-aarch64-linux-gnu"
 - "gcc-8-aarch64-linux-gnu"
 - "binutils-aarch64-linux-gnu"
-- "g++-arm-linux-gnueabihf"
 - "g++-8-arm-linux-gnueabihf"
 - "gcc-8-arm-linux-gnueabihf"
 - "binutils-arm-linux-gnueabihf"
