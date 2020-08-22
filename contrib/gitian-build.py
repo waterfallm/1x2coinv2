@@ -104,9 +104,9 @@ def setup_darwin():
 
 def setup_repos():
     if not os.path.isdir('gitian.sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/1x2coinv2-Project/gitian.sigs.git'])
-    if not os.path.isdir('1x2coinv2-detached-sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/1x2coinv2-Project/1x2coinv2-detached-sigs.git'])
+        subprocess.check_call(['git', 'clone', 'https://github.com/PIVX-Project/gitian.sigs'])
+    if not os.path.isdir('pivx-detached-sigs'):
+        subprocess.check_call(['git', 'clone', 'https://github.com/PIVX-Project/pivx-detached-sigs'])
     if not os.path.isdir('gitian-builder'):
         subprocess.check_call(['git', 'clone', 'https://github.com/devrandom/gitian-builder.git'])
     if not os.path.isdir('1x2coinv2'):
@@ -150,13 +150,13 @@ def build():
 
     if args.linux:
         print('\nCompiling ' + args.version + ' Linux')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', '1x2coinv2='+args.commit, '--url', '1x2coin='+args.url, '../1x2coinv2/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', '1x2coinv2='+args.commit, '--url', '1x2coinv2='+args.url, '../1x2coinv2/contrib/gitian-descriptors/gitian-linux.yml'])
         subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-linux', '--destination', '../gitian.sigs/', '../1x2coinv2/contrib/gitian-descriptors/gitian-linux.yml'])
-        subprocess.check_call('mv build/out/1x2coin-*.tar.gz build/out/src/1x2coin-*.tar.gz ../1x2coin-binaries/'+args.version, shell=True)
+        subprocess.check_call('mv build/out/1x2coinv2-*.tar.gz build/out/src/1x2coinv2-*.tar.gz ../1x2coinv2-binaries/'+args.version, shell=True)
 
     if args.windows:
         print('\nCompiling ' + args.version + ' Windows')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', '1x2coin='+args.commit, '--url', '1x2coinv2='+args.url, '../1x2coinv2/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', '1x2coinv2='+args.commit, '--url', '1x2coinv2='+args.url, '../1x2coinv2/contrib/gitian-descriptors/gitian-win.yml'])
         subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-unsigned', '--destination', '../gitian.sigs/', '../1x2coinv2/contrib/gitian-descriptors/gitian-win.yml'])
         subprocess.check_call('mv build/out/1x2coinv2-*-win-unsigned.tar.gz inputs/', shell=True)
         subprocess.check_call('mv build/out/1x2coinv2-*.zip build/out/1x2coinv2-*.exe build/out/src/1x2coinv2-*.tar.gz ../1x2coinv2-binaries/'+args.version, shell=True)
@@ -258,7 +258,7 @@ def main():
     parser = argparse.ArgumentParser(description='Script for running full Gitian builds.')
     parser.add_argument('-c', '--commit', action='store_true', dest='commit', help='Indicate that the version argument is for a commit or branch')
     parser.add_argument('-p', '--pull', action='store_true', dest='pull', help='Indicate that the version argument is the number of a github repository pull request')
-    parser.add_argument('-u', '--url', dest='url', default='https://github.com/1x2coinv2-Project/1x2coinv2', help='Specify the URL of the repository. Default is %(default)s')
+    parser.add_argument('-u', '--url', dest='url', default='https://github.com/waterfallm/1x2coinv2', help='Specify the URL of the repository. Default is %(default)s')
     parser.add_argument('-v', '--verify', action='store_true', dest='verify', help='Verify the Gitian build')
     parser.add_argument('-b', '--build', action='store_true', dest='build', help='Do a Gitian build')
     parser.add_argument('-s', '--sign', action='store_true', dest='sign', help='Make signed binaries for Windows and MacOS')
