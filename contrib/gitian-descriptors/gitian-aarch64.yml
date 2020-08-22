@@ -26,7 +26,7 @@ packages:
 reference_datetime: "2015-06-01 00:00:00"
 remotes:
 - "url": "https://github.com/waterfallm/1x2coinv2.git"
-  "dir": "1x2coin"
+  "dir": "1x2coinv2"
 files: []
 script: |
 
