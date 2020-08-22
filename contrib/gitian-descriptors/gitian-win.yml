@@ -23,7 +23,7 @@ packages:
 - "python"
 remotes:
 - "url": "https://github.com/waterfallm/1x2coinv2.git"
-  "dir": "1x2coin"
+  "dir": "1x2coinv2"
 files: []
 script: |
   WRAP_DIR=$HOME/wrapped
