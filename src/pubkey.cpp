@@ -118,7 +118,7 @@ void CExtPubKey::Encode(unsigned char code[74]) const
     code[8] = (nChild >> 0) & 0xFF;
     memcpy(code + 9, vchChainCode, 32);
     assert(pubkey.size() == 33);
-    memcpy(code + 41, pubkey.begin(), 33);
+    memcpy(code + 41, pubkey.begin(), 74);
 }
 
 void CExtPubKey::Decode(const unsigned char code[74])

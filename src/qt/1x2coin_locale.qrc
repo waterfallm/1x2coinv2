@@ -21,6 +21,7 @@
         <file alias="ru">locale/1x2coin_ru.qm</file>
         <file alias="sk">locale/1x2coin_sk.qm</file>
         <file alias="sv">locale/1x2coin_sv.qm</file>
+        <file alias="tr">locale/1x2coin_tr.qm</file>
         <file alias="uk">locale/1x2coin_uk.qm</file>
         <file alias="zh_CN">locale/1x2coin_zh_CN.qm</file>
         <file alias="zh_TW">locale/1x2coin_zh_TW.qm</file>

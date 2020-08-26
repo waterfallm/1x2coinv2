@@ -2,7 +2,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 The 1X2 Coin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -106,22 +105,18 @@ std::string to_internal(const std::string&);
 
 using namespace std;
 
-//1X2 Coin only features
+// 1x2coin only features
+// Masternode
 bool fMasterNode = false;
 string strMasterNodePrivKey = "";
 string strMasterNodeAddr = "";
 bool fLiteMode = false;
+// SwiftTX
 bool fEnableSwiftTX = true;
 int nSwiftTXDepth = 5;
-int nObfuscationRounds = 2;
-int nAnonymizeCoinAmount = 1000;
-int nLiquidityProvider = 0;
 /** Spork enforcement enabled time */
 int64_t enforceMasternodePaymentsTime = 4085657524;
 bool fSucessfullyLoaded = false;
-bool fEnableObfuscation = false;
-/** All denominations used by obfuscation */
-std::vector<int64_t> obfuScationDenominations;
 string strBudgetMode = "";
 
 map<string, string> mapArgs;
@@ -232,9 +227,8 @@ bool LogAcceptCategory(const char* category)
             const vector<string>& categories = mapMultiArgs["-debug"];
             ptrCategory.reset(new set<string>(categories.begin(), categories.end()));
             // thread_specific_ptr automatically deletes the set when the thread ends.
-            // "1X2coin" is a composite category enabling all 1X2 Coin-related debug output
-            if (ptrCategory->count(string("1X2coin"))) {
-                ptrCategory->insert(string("obfuscation"));
+            // "1x2coin" is a composite category enabling all 1x2coin-related debug output
+            if (ptrCategory->count(string("1x2coin"))) {
                 ptrCategory->insert(string("swifttx"));
                 ptrCategory->insert(string("masternode"));
                 ptrCategory->insert(string("mnpayments"));
@@ -397,7 +391,7 @@ static std::string FormatException(std::exception* pex, const char* pszThread)
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "1X2coin";
+    const char* pszModule = "1x2coin";
 #endif
     if (pex)
         return strprintf(
@@ -418,13 +412,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\1X2 Coin
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\1X2 Coin
-// Mac: ~/Library/Application Support/1X2 Coin
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\1x2coin
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\1x2coin
+// Mac: ~/Library/Application Support/1x2coin
 // Unix: ~/.1x2coin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "1X2 Coin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "1x2coin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -436,7 +430,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "1X2 Coin";
+    return pathRet / "1x2coin";
 #else
     // Unix
     return pathRet / ".1x2coin";

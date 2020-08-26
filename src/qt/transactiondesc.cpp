@@ -1,7 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 The 1X2 Coin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -43,11 +42,11 @@ QString TransactionDesc::FormatTxStatus(const CWalletTx& wtx)
                 if (nDepth < 0)
                     return tr("conflicted");
                 else if (GetAdjustedTime() - wtx.nTimeReceived > 2 * 60 && wtx.GetRequestCount() == 0)
-                    return tr("%1/offline (verified via swifttx)").arg(nDepth);
+                    return tr("%1/offline (verified via SwiftTX)").arg(nDepth);
                 else if (nDepth < 6)
-                    return tr("%1/confirmed (verified via swifttx)").arg(nDepth);
+                    return tr("%1/confirmed (verified via SwiftTX)").arg(nDepth);
                 else
-                    return tr("%1 confirmations (verified via swifttx)").arg(nDepth);
+                    return tr("%1 confirmations (verified via SwiftTX)").arg(nDepth);
             } else {
                 if (!wtx.IsTransactionLockTimedOut()) {
                     int nDepth = wtx.GetDepthInMainChain();

@@ -27,13 +27,15 @@ struct CCheckpointData {
 };
 
 //! Returns true if block passes checkpoint checks
-bool CheckBlock(int nHeight, const uint256& hash);
+bool CheckBlock(int nHeight, const uint256& hash, bool fMatchesCheckpoint = false);
 
 //! Return conservative estimate of total number of blocks, 0 if unknown
 int GetTotalBlocksEstimate();
 
 //! Returns last CBlockIndex* in mapBlockIndex that is a checkpoint
 CBlockIndex* GetLastCheckpoint();
+
+int GetClosestCheckpoint(int blocknum = 0);
 
 double GuessVerificationProgress(CBlockIndex* pindex, bool fSigchecks = true);
 

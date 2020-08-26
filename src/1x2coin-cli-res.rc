@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "1X2 Coin"
-            VALUE "FileDescription",    "1X2 Coin-cli (OSS RPC client for 1X2 Coin)"
+            VALUE "CompanyName",        "1x2coin"
+            VALUE "FileDescription",    "1x2coin-cli (OSS RPC client for 1x2coin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "1x2coin-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "1x2coin-cli.exe"
-            VALUE "ProductName",        "1X2 Coin-cli"
+            VALUE "ProductName",        "1x2coin-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

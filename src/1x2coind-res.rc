@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "1X2 Coin"
-            VALUE "FileDescription",    "1x2coind (OSS daemon/client for 1X2 Coin)"
+            VALUE "CompanyName",        "1x2coin"
+            VALUE "FileDescription",    "1x2coind (OSS daemon/client for 1x2coin)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "1x2coind"
             VALUE "LegalCopyright",     COPYRIGHT_STR

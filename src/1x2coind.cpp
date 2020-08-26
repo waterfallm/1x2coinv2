@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 The 1X2 Coin developers
+// Copyright (c) 2020 The 1X2 coin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,6 +11,7 @@
 #include "main.h"
 #include "masternodeconfig.h"
 #include "noui.h"
+#include "scheduler.h"
 #include "rpcserver.h"
 #include "ui_interface.h"
 #include "util.h"
@@ -25,8 +26,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called 1X2 Coin (http://www.1x2coin.net),
- * which enables instant payments to anyone, anywhere in the world. 1X2 Coin uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called 1x2coin (http://www.1x2coin.io),
+ * which enables instant payments to anyone, anywhere in the world. 1x2coin uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
@@ -58,6 +59,7 @@ void DetectShutdownThread(boost::thread_group* threadGroup)
 bool AppInit(int argc, char* argv[])
 {
     boost::thread_group threadGroup;
+    CScheduler scheduler;
     boost::thread* detectShutdownThread = NULL;
 
     bool fRet = false;
@@ -70,13 +72,13 @@ bool AppInit(int argc, char* argv[])
 
     // Process help and version before taking care about datadir
     if (mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("1X2 Coin Core Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("1x2coin Core Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n";
 
         if (mapArgs.count("-version")) {
             strUsage += LicenseInfo();
         } else {
             strUsage += "\n" + _("Usage:") + "\n" +
-                        "  1x2coind [options]                     " + _("Start 1X2 Coin Core Daemon") + "\n";
+                        "  1x2coind [options]                     " + _("Start 1x2coin Core Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -122,7 +124,7 @@ bool AppInit(int argc, char* argv[])
 #ifndef WIN32
         fDaemon = GetBoolArg("-daemon", false);
         if (fDaemon) {
-            fprintf(stdout, "1X2 Coin server starting\n");
+            fprintf(stdout, "1x2coin server starting\n");
 
             // Daemonize
             pid_t pid = fork();
@@ -144,7 +146,7 @@ bool AppInit(int argc, char* argv[])
         SoftSetBoolArg("-server", true);
 
         detectShutdownThread = new boost::thread(boost::bind(&DetectShutdownThread, &threadGroup));
-        fRet = AppInit2(threadGroup);
+        fRet = AppInit2(threadGroup, scheduler);
     } catch (std::exception& e) {
         PrintExceptionContinue(&e, "AppInit()");
     } catch (...) {
@@ -175,7 +177,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect 1x2coind signal handlers
+    // Connect 1x2coin signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? 0 : 1);

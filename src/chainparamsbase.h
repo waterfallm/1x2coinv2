@@ -10,7 +10,7 @@
 
 /**
  * CBaseChainParams defines the base parameters (shared between 1x2coin-cli and 1x2coind)
- * of a given instance of the 1X2 Coin system.
+ * of a given instance of the 1x2coin system.
  */
 class CBaseChainParams
 {

@@ -1,5 +1,6 @@
 /* @flow */
 // Copyright (c) 2012-2013 The PPCoin developers
+// Copyright (c) 2015-2017 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,6 +12,7 @@
 #include "script/interpreter.h"
 #include "timedata.h"
 #include "util.h"
+#include "spork.h"
 
 using namespace std;
 
@@ -273,7 +275,7 @@ bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64_t& nStakeModifier, int
 
 uint256 stakeHash(unsigned int nTimeTx, CDataStream ss, unsigned int prevoutIndex, uint256 prevoutHash, unsigned int nTimeBlockFrom)
 {
-    //1X2 Coin will hash in the transaction hash and the index number in order to make sure each hash is unique
+    // 1x2coin will hash in the transaction hash and the index number in order to make sure each hash is unique
     ss << nTimeBlockFrom << prevoutIndex << prevoutHash << nTimeTx;
     return Hash(ss.begin(), ss.end());
 }
@@ -294,12 +296,16 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock blockFrom, const CTra
     //assign new variables to make it easier to read
     int64_t nValueIn = txPrev.vout[prevout.n].nValue;
     unsigned int nTimeBlockFrom = blockFrom.GetBlockTime();
+	 int nHeightStart = chainActive.Height();
 
     if (nTimeTx < nTimeBlockFrom) // Transaction timestamp violation
         return error("CheckStakeKernelHash() : nTime violation");
 
-    if (nTimeBlockFrom + nStakeMinAge > nTimeTx) // Min age requirement
-        return error("CheckStakeKernelHash() : min age violation - nTimeBlockFrom=%d nStakeMinAge=%d nTimeTx=%d", nTimeBlockFrom, nStakeMinAge, nTimeTx);
+        unsigned int nStakeMinAgeCurrent = nStakeMinAge;
+	if (IsSporkActive(SPORK_17_STAKE_REQ_AG) && nTimeBlockFrom >= GetSporkValue(SPORK_17_STAKE_REQ_AG)) {
+		nStakeMinAgeCurrent = nStakeMinAge2;
+	}
+	
 
     //grab difficulty
     uint256 bnTargetPerCoinDay;
@@ -329,6 +335,10 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock blockFrom, const CTra
     unsigned int i;
     for (i = 0; i < (nHashDrift); i++) //iterate the hashing
     {
+        //new block came in, move on
+        if (chainActive.Height() != nHeightStart)
+            break;
+
         //hash this iteration
         nTryTime = nTimeTx + nHashDrift - i;
         hashProofOfStake = stakeHash(nTryTime, ss, prevout.n, prevout.hash, nTimeBlockFrom);

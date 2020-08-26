@@ -1,16 +1,18 @@
+.gitignore
 *.sublime-project
 *.sublime-workspace
-.vscode
 todo.txt
 reset-files.bash
 
 *.tar.gz
+*.tar.bz2
 
 *.exe
 src/1x2coin
 src/1x2coind
 src/1x2coin-cli
 src/1x2coin-tx
+src/bench/bench_1x2coin
 src/test/test_1x2coin
 src/qt/test/test_1x2coin-qt
 
@@ -45,6 +47,8 @@ share/setup.nsi
 share/qt/Info.plist
 contrib/devtools/split-debug.sh
 
+src/univalue/gen
+
 src/qt/*.moc
 src/qt/moc_*.cpp
 src/qt/forms/ui_*.h
@@ -62,6 +66,7 @@ src/qt/test/moc*.cpp
 *.pyc
 *.o
 *.o-*
+# *.patch
 .1x2coin
 *.a
 *.pb.cc
@@ -80,9 +85,15 @@ src/qt/test/moc*.cpp
 
 # Compilation and Qt preprocessor part
 *.qm
-Makefile
+#Makefile
 1x2coin-qt
-1x2coin-qt.app
+1x2coin-Qt.app
+background.tiff*
+
+# Rust
+.cargo/.configured-for-*
+.cargo/config
+target/
 
 # Unit-tests
 Makefile.test
@@ -110,16 +121,28 @@ coverage_percent.txt
 linux-coverage-build
 linux-build
 win32-build
+test/config.ini
+test/cache/*
 qa/pull-tester/run-bitcoind-for-test.sh
 qa/pull-tester/tests-config.sh
 qa/pull-tester/cache/*
 qa/pull-tester/test.*/*
+cache/*
+
+!src/leveldb*/Makefile
 
 .cproject
 .project
 /doc/doxygen/
 /nbproject/
-
+libbitcoinconsensus.pc
 .idea
 CMakeLists.txt
 cmake-build-debug
+
+moc_*
+*.tmp
+ui_*
+build*
+1x2coind.*
+1x2coind-new-gui.*
