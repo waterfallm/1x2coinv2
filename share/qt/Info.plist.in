@@ -17,7 +17,7 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The 1X2 Coin Core developers</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The Pivx Core developers, 2017-@COPYRIGHT_YEAR@ The 1x2coin Core developers</string>
 
   <key>CFBundleShortVersionString</key>
   <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@</string>
@@ -29,10 +29,10 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>1X2Coin-Qt</string>
+  <string>1x2coin-Qt</string>
 
   <key>CFBundleIdentifier</key>
-  <string>io.1x2coin.1X2Coin-Qt</string>
+  <string>io.1x2coin.1X2_COINcoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -40,7 +40,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.1x2coin.1X2CoinPayment</string>
+      <string>io.1x2coin.1X2_COINcoinPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>1x2coin</string>
@@ -54,7 +54,7 @@
       <key>UTTypeIdentifier</key>
       <string>io.1x2coin.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>1X2 Coin payment request</string>
+      <string>1x2coin payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
